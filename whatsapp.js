@@ -2,7 +2,7 @@ import { rmSync, readdir } from 'fs';
 import _0x40b70e from 'fs';
 import { join } from 'path';
 import _0x5a133f from 'pino';
-import _0x3bd1a4, { useMultiFileAuthState, makeInMemoryStore, Browsers, DisconnectReason, delay } from '@adiwajshing/baileys';
+import _0x3bd1a4, { useMultiFileAuthState, makeInMemoryStore, Browsers, DisconnectReason, delay, downloadMediaMessage  } from '@adiwajshing/baileys';
 import { toDataURL } from 'qrcode';
 import _0x4bf9b7 from './dirname.js';
 import _0x16d596 from './response.js';
@@ -102,7 +102,8 @@ const createSession = async (_0x504074, _0x54de04 = false, _0x1ab13f = null) => 
           _0x166f95.sessionId = _0x504074;
           _0x166f95.message_id = _0x446adf.key.id;
           _0x166f95.message = _0x446adf.message;
-          sentWebHook(_0x504074, _0x166f95);
+          _0x166f95.extra = _0x17fc1c;
+          sentWebHook(_0x504074, _0x166f95, _0x494bf9);
         }
       }
     } catch {}
@@ -142,7 +143,7 @@ const createSession = async (_0x504074, _0x54de04 = false, _0x1ab13f = null) => 
       try {
         await _0x494bf9.logout();
       } catch {} finally {
-        deleteSession(_0x504074, _0x54de04);
+      //  deleteSession(_0x504074, _0x54de04);
       }
     }
   });
@@ -171,18 +172,23 @@ const setDeviceStatus = (_0xb292d0, _0x2b50df) => {
     });
   } catch {}
 };
-const sentWebHook = (_0x3e6039, _0x56c4e1) => {
-  const _0x14d5a5 = process.env.APP_URL + "/api/send-webhook/" + _0x3e6039;
+const sentWebHook = async (_0x3e6039, _0x56c4e1, _0x494bf9) =>  {
+  const _0x14d5a5 = process.env.APP_URL + "/api/send-webhook";
   try {
+    
+    const messageType = Object.keys (_0x56c4e1.message)[0];
     _0x5e2a90.post(_0x14d5a5, {
       'from': _0x56c4e1.remote_id,
       'message_id': _0x56c4e1.message_id,
-      'message': _0x56c4e1.message
+      'message': _0x56c4e1.message,
+      "type": messageType,
+      
     }).then(function (_0x15e505) {
-      if (_0x15e505.status == 0xc8) {
-        const _0x176245 = sessions.get(_0x15e505.data.session_id) ?? null;
-        sendMessage(_0x176245, _0x15e505.data.receiver, _0x15e505.data.message);
-      }
+           console.log(_0x15e505);
+      // if (_0x15e505.status == 0xc8) {
+      //   const _0x176245 = sessions.get(_0x15e505.data.session_id) ?? null;
+      //   sendMessage(_0x176245, _0x15e505.data.receiver, _0x15e505.data.message);
+      // }
     })['catch'](function (_0x54e0f8) {
       console.log(_0x54e0f8);
     });
@@ -228,7 +234,9 @@ const isExists = async (_0x39d2be, _0x5e766c, _0x4d70db = false) => {
 const sendMessage = async (_0x1b6c74, _0x51ad7b, _0x425596, _0x2a2df4 = 0x3e8) => {
   try {
     await delay(parseInt(_0x2a2df4));
-    return _0x1b6c74.sendMessage(_0x51ad7b, _0x425596);
+    var options = _0x425596["options"] ?? {};
+    
+    return _0x1b6c74.sendMessage(_0x51ad7b, _0x425596, options);
   } catch {
     return Promise.reject(null);
   }
