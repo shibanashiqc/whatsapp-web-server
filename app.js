@@ -26,6 +26,6 @@ if (host) {
     app.listen(port, listenerCallback)
 }
 
-nodeCleanup(cleanup)
+// nodeCleanup(cleanup)
 
 export default app
