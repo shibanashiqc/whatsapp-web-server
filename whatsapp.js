@@ -103,7 +103,7 @@ const createSession = async (_0x504074, _0x54de04 = false, _0x1ab13f = null) => 
           _0x166f95.message_id = _0x446adf.key.id;
           _0x166f95.message = _0x446adf.message;
           _0x166f95.extra = _0x17fc1c;
-          sentWebHook(_0x504074, _0x166f95, _0x494bf9);
+          sentWebHook(_0x504074, _0x166f95, _0x494bf9, _0x17fc1c);
         }
       }
     } catch {}
@@ -172,23 +172,26 @@ const setDeviceStatus = (_0xb292d0, _0x2b50df) => {
     });
   } catch {}
 };
-const sentWebHook = async (_0x3e6039, _0x56c4e1, _0x494bf9) =>  {
+const sentWebHook = async (_0x3e6039, _0x56c4e1, _0x494bf9, _0x17fc1c) =>  {
   const _0x14d5a5 = process.env.APP_URL + "/api/send-webhook";
   try {
     
+    var msg = _0x17fc1c.messages[0];
     const messageType = Object.keys (_0x56c4e1.message)[0];
     _0x5e2a90.post(_0x14d5a5, {
       'from': _0x56c4e1.remote_id,
       'message_id': _0x56c4e1.message_id,
       'message': _0x56c4e1.message,
       "type": messageType,
-      
-    }).then(function (_0x15e505) {
+      "replay_message_json" : msg
+    }).then(async function (_0x15e505) {
            console.log(_0x15e505);
-      // if (_0x15e505.status == 0xc8) {
-      //   const _0x176245 = sessions.get(_0x15e505.data.session_id) ?? null;
-      //   sendMessage(_0x176245, _0x15e505.data.receiver, _0x15e505.data.message);
-      // }
+      if (_0x15e505.status == 0xc8) {
+        //  to JSON
+       
+      // if (!msg || !msg.message || msg.key.fromMe) return;
+      // await  _0x494bf9.sendMessage(_0x56c4e1.remote_id, { text: 'HYy' }, { quoted: msg });
+      }
     })['catch'](function (_0x54e0f8) {
       console.log(_0x54e0f8);
     });
