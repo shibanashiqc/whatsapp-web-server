@@ -85,10 +85,35 @@ const createSession = async (_0x504074, _0x54de04 = false, _0x1ab13f = null) => 
   _0x494bf9.ev.on('chats.set', ({
     chats: _0x38bf4e
   }) => {
+    console.log('Chats updated', );
     if (_0x54de04) {
       _0x41f2d3.chats.insertIfAbsent(..._0x38bf4e);
     }
   });
+  
+  _0x494bf9.ev.on('message-receipt.update', _0x1e4b3d => {
+    console.log('Message receipt updated', );
+    
+  });
+  
+  _0x494bf9.ev.on('messaging-history.set', _0x1e4b3d => {
+    console.log('Message updated', );
+  });
+  
+  _0x494bf9.ev.on('messages.update', _0x1e4b3d => {
+    // console.log(JSON.stringify(_0x1e4b3d));
+    const _0x14d5a5 = process.env.APP_URL + "/api/send-message-webhook";
+    try {
+      _0x5e2a90.post(_0x14d5a5, {
+        'data': _0x1e4b3d
+      }).then(function (_0x15e505) {
+        console.log(_0x15e505);
+      })['catch'](function (_0x54e0f8) {
+        console.log(_0x54e0f8);
+      });
+    } catch {}
+  });
+  
   _0x494bf9.ev.on("messages.upsert", async _0x17fc1c => {
     try {
       const _0x446adf = _0x17fc1c.messages[0x0];
