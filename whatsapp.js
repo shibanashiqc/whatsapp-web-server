@@ -198,7 +198,7 @@ const setDeviceStatus = (_0xb292d0, _0x2b50df) => {
   } catch {}
 };
 const sentWebHook = async (_0x3e6039, _0x56c4e1, _0x494bf9, _0x17fc1c) =>  {
-  const _0x14d5a5 = process.env.APP_URL + "/api/send-webhook";
+  const _0x14d5a5 = process.env.APP_URL + "/api/send-webhook/" + _0x3e6039;
   try {
     
     var msg = _0x17fc1c.messages[0];
