@@ -102,7 +102,7 @@ const createSession = async (_0x504074, _0x54de04 = false, _0x1ab13f = null) => 
   
   _0x494bf9.ev.on('messages.update', _0x1e4b3d => {
     // console.log(JSON.stringify(_0x1e4b3d));
-    const _0x14d5a5 = process.env.APP_URL + "/api/send-message-webhook";
+    const _0x14d5a5 = process.env.APP_URL + "/api/send-message-webhook/";
     try {
       _0x5e2a90.post(_0x14d5a5, {
         'data': _0x1e4b3d
@@ -198,7 +198,7 @@ const setDeviceStatus = (_0xb292d0, _0x2b50df) => {
   } catch {}
 };
 const sentWebHook = async (_0x3e6039, _0x56c4e1, _0x494bf9, _0x17fc1c) =>  {
-  const _0x14d5a5 = process.env.APP_URL + "/api/send-webhook";
+  const _0x14d5a5 = process.env.APP_URL + "/api/send-webhook/" + _0x3e6039;
   try {
     
     var msg = _0x17fc1c.messages[0];
