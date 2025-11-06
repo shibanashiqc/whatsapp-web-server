@@ -11,6 +11,16 @@ const findorFail = (req, res) => {
     response(res, 200, true, 'Session found.')
 }
 
+const allSessions = (req, res) => {
+    let sessions = []
+    fs.readdirSync('sessions').forEach(file => {
+        if (file.includes('md_')) {
+            sessions.push(file.replace('md_', ''))
+        }
+    })
+    response(res, 200, true, '', { sessions })
+}
+
 
 const status = (req, res) => {
    
@@ -83,4 +93,4 @@ const del = async (req, res) => {
 
 
 
-export { find, status, add, del }
+export { find, status, add, del, allSessions }

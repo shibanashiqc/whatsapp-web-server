@@ -9,6 +9,7 @@ const router = Router()
 router.get('/find/:id', sessionValidator, controller.find);
 
 router.get('/server-status', controller.find);
+router.get('/all', controller.allSessions);
 
 router.get('/status/:id', sessionValidator, controller.status)
 

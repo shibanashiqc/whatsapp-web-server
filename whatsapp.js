@@ -223,17 +223,17 @@ const sentWebHook = async (_0x3e6039, _0x56c4e1, _0x494bf9, _0x17fc1c) =>  {
   } catch {}
 };
 const deleteSession = (_0x3d70e6, _0x474542 = false) => {
-  const _0x3230a4 = (_0x474542 ? "legacy_" : "md_") + _0x3d70e6 + (_0x474542 ? ".json" : '');
-  const _0x5ca81e = _0x3d70e6 + '_store.json';
-  const _0x36ce44 = {
-    'force': true,
-    'recursive': true
-  };
-  rmSync(sessionsDir(_0x3230a4), _0x36ce44);
-  rmSync(sessionsDir(_0x5ca81e), _0x36ce44);
-  sessions["delete"](_0x3d70e6);
-  retries["delete"](_0x3d70e6);
-  setDeviceStatus(_0x3d70e6, 0x0);
+  // const _0x3230a4 = (_0x474542 ? "legacy_" : "md_") + _0x3d70e6 + (_0x474542 ? ".json" : '');
+  // const _0x5ca81e = _0x3d70e6 + '_store.json';
+  // const _0x36ce44 = {
+  //   'force': true,
+  //   'recursive': true
+  // };
+  // rmSync(sessionsDir(_0x3230a4), _0x36ce44);
+  // rmSync(sessionsDir(_0x5ca81e), _0x36ce44);
+  // sessions["delete"](_0x3d70e6);
+  // retries["delete"](_0x3d70e6);
+  // setDeviceStatus(_0x3d70e6, 0x0);
 };
 const getChatList = (_0x3858c4, _0x15dc87 = false) => {
   const _0x50f97b = _0x15dc87 ? "@g.us" : '@s.whatsapp.net';
