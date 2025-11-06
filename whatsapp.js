@@ -147,7 +147,7 @@ const createSession = async (_0x504074, _0x54de04 = false, _0x1ab13f = null) => 
         if (_0x1ab13f && !_0x1ab13f.headersSent) {
           _0x16d596(_0x1ab13f, 0x1f4, false, "Unable to create session.");
         }
-        return deleteSession(_0x504074, _0x54de04);
+        // return deleteSession(_0x504074, _0x54de04);
       }
       setTimeout(() => {
         createSession(_0x504074, _0x54de04, _0x1ab13f);
@@ -166,7 +166,7 @@ const createSession = async (_0x504074, _0x54de04 = false, _0x1ab13f = null) => 
         }
       }
       try {
-        await _0x494bf9.logout();
+        // await _0x494bf9.logout();
       } catch {} finally {
       //  deleteSession(_0x504074, _0x54de04);
       }
